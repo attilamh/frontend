@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>simple</title>
+    <!--
+    The htmlWebpackPlugin will parse the logic below so that it is only added to index.html if defined.
+    This is an example of how to add features to index.html for a specific environment.
+   -->
+    <% if (htmlWebpackPlugin.options.newRelicKey) { %>
+    <!-- BEGIN NEW RELIC -->
+    <script type="text/javascript">window._newRelic = { newRelicKey: '<%=htmlWebpackPlugin.options.newRelicKey%>', newRelicId: '<%=htmlWebpackPlugin.options.newRelicId%>' };</script>
+    <!-- Include New Relic Src here... -->
+    <!-- END NEW RELIC -->
+    <% } %>
+  </head>
+  <body>
+
+  <div id="app">
+    <img src="./asset/logo.png">
+    <h1>{{ msg }}</h1>
+
+    <table>
+      <thead>
+        <th>&nbsp;</th>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+      </thead>
+      <tbody id="users" is="users" ref='userHandler'>
+      </tbody>
+    </table>
+    <button v-on:click="getUsers">Update</button>
+
+    <div>
+      <router-link to="/Hello">Go to Hello</router-link>
+      &nbsp;&nbsp;&nbsp;
+      <router-link to="/Bye">Go to Bye</router-link>
+    </div>
+    <div>
+      <router-view></router-view>
+    </div>
+  </body>
+</html>
