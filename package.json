@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "prestart": "FORCE_COLOR=1 babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --race --parallel dev csslint:watch jslint:watch test:watch start:mockapi",
+    "start": "npm-run-all --parallel security:check dev csslint:watch jslint:watch test:watch start:mockapi",
     "dev": "cross-env NODE_ENV=development FORCE_COLOR=1 babel-node buildScripts/srcServer.js",
     "jslint": "esw webpack.config.* src buildScripts --color",
     "jslint:watch": "npm run jslint -- --watch",
@@ -14,7 +14,7 @@
     "csslint:watch": "onchange 'src/**/*.*css' -- npm run csslint",
     "security:check": "nsp check",
     "localtunnel": "lt --port 8089",
-    "share": "npm-run-all --race --parallel dev localtunnel",
+    "share": "npm-run-all --parallel dev localtunnel",
     "unit": "cross-env BABEL_ENV=test karma start karma.conf",
     "test": "npm run unit -- --single-run",
     "test:watch": "npm run unit -- --watch",
@@ -24,9 +24,7 @@
     "clean:dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm-run-all clean:dist test jslint csslint",
     "build": "cross-env NODE_ENV=production FORCE_COLOR=1 babel-node buildScripts/build.js",
-    "postbuild": "FORCE_COLOR=1 babel-node buildScripts/distServer.js",
-    "vue:dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
-    "vue:build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "postbuild": "FORCE_COLOR=1 babel-node buildScripts/distServer.js"
   },
   "dependencies": {
     "axios": "^0.17.0",
