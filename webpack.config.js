@@ -167,7 +167,7 @@ if (process.env.NODE_ENV === 'production') {
   // Properties you define here are available in index.html
   // using htmlWebpackPlugin.options.varName
   htmlWebpackOptions.newRelicKey = '43ad216f57d94259968435894490a5c7'
-  htmlWebpackOptions.newRelicId = 'Matrix.production'
+  htmlWebpackOptions.newRelicId = 'MyApp.production'
 
 }
 
